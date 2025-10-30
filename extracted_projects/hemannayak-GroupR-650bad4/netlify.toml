@@ -1,0 +1,25 @@
+[build]
+  command = "pip install -r requirements.txt && mkdir -p data/raw && python scripts/generate_live_tweets.py -a"
+  publish = "frontend"
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
+
+[dev]
+  command = "streamlit run frontend/app_enhanced.py"
+  port = 8501
+  targetPort = 8501
+
+[[redirects]]
+  from = "/api/*"
+  to = "http://localhost:8000/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/app_enhanced.py"
+  status = 200
+
+[functions]
+  directory = "backend"

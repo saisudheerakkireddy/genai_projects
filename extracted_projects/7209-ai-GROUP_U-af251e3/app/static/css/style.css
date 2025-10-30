@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #c63b3b;
+}
+
+h1 {
+    color: #e73636;
+}
+
+button {
+    margin-top: 5px;
+    padding: 5px 10px;
+}
+
+#summary {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #282525;
+}
+
+/* Spinner styles */
+#spinner {
+    display: none; /* hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.95);
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 18px;
+    z-index: 9999;
+}
+
+.spinner-hidden { display: none; }
+.spinner-visible { display: block; }

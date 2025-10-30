@@ -1,0 +1,6 @@
+transformers
+torch
+biopython
+pandas
+requests
+tqdm

@@ -1,0 +1,80 @@
+# /Users/hima/downloads/repo-root/docker-compose.yml
+
+services:
+  # --- 1. Database ---
+  mongo:
+    image: mongo:6.0 # Stable, widely used version
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      # These credentials are NOT used by Node.js unless you enable auth, 
+      # but are good practice.
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+
+  # --- 2. Caching/Queueing ---
+  redis:
+    image: redis:7.0-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  # --- 3. File Storage ---
+  minio:
+    # Using a known stable tag to fix the error
+    image: minio/minio:RELEASE.2024-06-25T12-32-41Z 
+    container_name: minio
+    restart: always
+    ports:
+      - "9000:9000" # API Access
+      - "9001:9001" # Console UI
+    volumes:
+      - minio_data:/data
+    environment:
+      # Match the credentials in your .env if you plan to use MinIO
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+
+  # --- 4. Backend API & Workers ---
+  backend:
+    # Use the image you just built locally
+    image: learning-path-api 
+    container_name: backend-api
+    build:
+      context: ./backend # Path to the backend folder containing the Dockerfile
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5050:5050"
+    depends_on:
+      - mongo # Wait for the database
+      - redis
+      - minio
+    # Pass environment variables needed for Node.js (JWT, LLM_API_KEY, etc.)
+    # NOTE: It's best to use a separate .env file for Docker Compose variables
+    env_file:
+      - .env
+
+  # --- 5. Frontend UI ---
+  frontend:
+    image: learning-path-ui
+    container_name: frontend-ui
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    # Map to port 80 or 3000 on your machine
+    ports:
+      - "5174:5173" 
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
+  minio_data:

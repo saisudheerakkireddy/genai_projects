@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+sentence-transformers
+chromadb
+google-genai
+pydantic
+python-dotenv
+langchain
+langchain-google-genai
+langchain-core
+twilio

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GenAI GroupU - Educational Assistant</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        input, select, textarea { width: 100%; margin: 5px 0 15px; padding: 8px; }
+        button { padding: 10px 20px; cursor: pointer; }
+        #result { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>GenAI GroupU - Educational Assistant</h1>
+
+    <h2>Upload File</h2>
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>Summarize Text</h2>
+    <form id="summarize-form">
+        <textarea name="text" placeholder="Paste your text here..." required></textarea>
+        <label for="summarizeModel">Select Model:</label>
+        <select name="model_name" id="summarizeModel" required>
+            {% for model in models %}
+                {% if loop.first %}
+                    <option value="{{ model }}" selected>{{ model }}</option>
+                {% else %}
+                    <option value="{{ model }}">{{ model }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <button type="submit">Summarize</button>
+    </form>
+
+    <h2>Generate Question</h2>
+    <form id="question-form">
+        <input type="text" name="topic" placeholder="Enter topic..." required>
+        <label for="questionModel">Select Model:</label>
+        <select name="model_name" id="questionModel" required>
+            {% for model in models %}
+                {% if loop.first %}
+                    <option value="{{ model }}" selected>{{ model }}</option>
+                {% else %}
+                    <option value="{{ model }}">{{ model }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <button type="submit">Generate Question</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        const uploadForm = document.getElementById("upload-form");
+        const summarizeForm = document.getElementById("summarize-form");
+        const questionForm = document.getElementById("question-form");
+        const resultDiv = document.getElementById("result");
+        const summarizeInput = summarizeForm.querySelector('textarea[name="text"]');
+        let currentText = "";  // shared buffer
+
+        uploadForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = new FormData(uploadForm);
+            const response = await fetch("/upload/", {
+                method: "POST",
+                body: formData
+            });
+            const data = await response.json();
+
+            // Store the uploaded file content from server response
+            currentText = data.content;
+
+            resultDiv.innerHTML = "<strong>File Upload:</strong><br>" + data.status;
+        });
+
+        summarizeForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const text = summarizeInput.value.trim() || currentText;  // use uploaded file if input empty
+            const model = document.getElementById("summarizeModel").value;
+
+            if (!text) {
+                alert("Please provide text or upload a file first!");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("text", text);
+            formData.append("model_name", model);
+
+            const response = await fetch("/summarize/", {
+                method: "POST",
+                body: formData
+            });
+            const data = await response.json();
+            resultDiv.innerHTML = "<strong>Summary:</strong><br>" + data.summary;
+        });
+
+        questionForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const topic = e.target.querySelector('input[name="topic"]').value.trim();
+            const model = document.getElementById("questionModel").value;
+
+            const formData = new FormData();
+            formData.append("topic", topic);
+            formData.append("model_name", model);
+
+            const response = await fetch("/question/", {
+                method: "POST",
+                body: formData
+            });
+            const data = await response.json();
+            resultDiv.innerHTML = "<strong>Question:</strong><br>" + data.question;
+        });
+    </script>
+</body>
+</html>

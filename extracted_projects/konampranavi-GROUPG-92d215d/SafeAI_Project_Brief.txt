@@ -1,0 +1,377 @@
+# Project: SafeAI — Intelligent Women's Safety Agent
+# Team Name: MINDSHARK
+# Tagline: ASTRA – Intelligent Safety Beyond Boundaries
+
+## Overview
+SafeAI is an intelligent, privacy-first women's safety web application designed to empower women traveling alone by combining real-time location tracking, AI-based risk prediction, and low-friction emergency support. The project must include a login system, dashboard, AI assistant chat, and safety monitoring logic with ML integration.
+
+---
+
+## Core Requirements
+### 1. Tech Stack
+- **Frontend**: Next.js (React)
+- **Hosting**: Supabase (for backend + DB) + Netlify or Vercel
+- **Database**: Supabase PostgreSQL
+- **Auth**: Supabase Auth (email/password + 2FA optional)
+- **Map**: Leaflet + OpenStreetMap (no API key needed)
+- **AI / Chat Agent**: Open-source LLM (e.g., Ollama, Hugging Face, or Local LLM endpoint)
+- **ML Model**: Python-based model (risk prediction using time, area type, and context)
+- **Communication**: Email alerts via Supabase Functions or EmailJS
+- **Environment Variables**:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+```
+
+---
+
+## Pages and Features
+
+### 1. **Login / Signup Page**
+- User registers with email + password (Supabase Auth)
+- One account per email
+- Option to reset password
+- Once logged in → redirects to Dashboard
+
+---
+
+### 2. **Dashboard Page**
+Title: `ASTRA – Intelligent Safety Beyond Boundaries`
+Subtitle: `By Team MINDSHARK`
+- Display the team logo as a **watermark** on all pages.
+- Sections:
+- **Features**
+  - Quick SOS / Panic Button
+  - Time-limited Live Location Share
+  - Safe-route Recommendations
+  - Geofenced Check-ins & Arrivals
+  - Trusted Circle & Consent Controls
+  - Community Safe Places / Vetted Hubs
+  - Incident Capture (audio/video)
+  - Anonymous Incident Reporting
+- **About**
+  - Team Members: Konam Pranavi, Janigala Vignesh Kumar, Gouroju Shiva Ganesh, Mamidi Indhu
+
+---
+
+### 3. **Profile Page**
+- Display user details: name, email, emergency contacts
+- Option to:
+- Add / edit / delete emergency contacts
+- Update password
+- Edit AI interaction frequency (5 / 10 / 15 mins)
+- Store this info in Supabase DB
+
+---
+
+### 4. **AI Safety Agent Chat**
+- Chatbot where user can say "Track me till I reach home"
+- Bot replies: "Sure, please tell me your destination"
+- After user gives location:
+- Uses Leaflet + OpenStreetMap to display route
+- Tracks live location every 5–15 mins (based on user settings)
+- Predicts safety level using ML model:
+  - Inputs: time (day/night), place type (crowded, near bar, isolated, etc.)
+  - Output: "High Secure", "Moderate", "Low Secure"
+- Sends alerts:
+  - If user doesn't reply to 3 consecutive checks → send emergency alert.
+  - If low-security area → message emergency contacts + share live location
+  - If medium-security area → message only contacts (no call)
+- Store chat logs and alerts in Supabase
+
+---
+
+### 5. **ML Model (Safety Prediction)**
+- Simple model trained on:
+- Location context (bars, hospitals, residential areas)
+- Time of day
+- Recent safety incidents (fetched via web scraping or static dataset)
+- Output categories: High, Medium, Low
+- Can run as a separate Python API or Supabase Edge Function
+
+---
+
+### 6. **Map Component**
+- Use **Leaflet** + **OpenStreetMap tiles** (no API key)
+- Show:
+- Current user position (live)
+- Safe route overlay
+- Risk level zones (color-coded)
+- Nearby safe spots (police, hospitals, etc.)
+- All updates via browser Geolocation API
+
+---
+
+### 7. **Emergency Alert System**
+- If danger predicted or user non-responsive:
+- Send SMS/Email (through Supabase Function or EmailJS)
+- Share location and timestamp
+- Mark alert in DB
+
+---
+
+### 8. **Privacy & Security**
+- Explicit consent for all tracking
+- Time-limited location access
+- Data auto-deleted after session ends
+- Optional anonymity for reports
+
+---
+
+## AI Model Setup (Optional for local dev)
+If LLM support is needed:
+- Use **Ollama** (local Llama2/3) or Hugging Face Inference API
+- Expose a simple endpoint: `/api/ai-agent` that replies conversationally
+
+---
+
+## Deployment
+Recommended:
+- Deploy frontend to **Netlify**
+- Use **Supabase** for backend + DB
+- Store all env vars in Netlify Environment Variables panel
+
+Alternate:
+- Deploy both frontend and backend on **Supabase Platform** using Edge Functions.
+
+---
+
+## Goal
+Deliver a fully functional prototype where:
+- Users can log in, create profiles, add trusted contacts.
+- The AI chat agent tracks location, interacts at intervals, and sends alerts if needed.
+- The dashboard visually presents features, routes, and safe zones.
+- No paid APIs (Google Maps, Twilio, etc.) are used.
+
+---
+
+## Notes for AI Developer (Cursor)
+- Use modular file structure:
+
+```
+/pages
+  index.js
+  login.js
+  dashboard.js
+  profile.js
+  chat.js
+/components
+  Map.js
+  Navbar.js
+  Footer.js
+/utils
+  supabaseClient.js
+```
+
+- Use TailwindCSS or Shadcn for modern UI.
+- Integrate Leaflet properly using `next/dynamic` to avoid SSR issues.
+- Use Supabase Auth and Realtime features for alerts and data sync.
+- Add watermark logo across all pages.
+
+---
+
+## Database Schema (Supabase Tables)
+
+### users table
+- id (uuid, primary key)
+- email (text, unique)
+- name (text)
+- created_at (timestamp)
+- updated_at (timestamp)
+
+### emergency_contacts table
+- id (uuid, primary key)
+- user_id (uuid, foreign key to users)
+- name (text)
+- phone (text)
+- email (text)
+- relationship (text)
+- created_at (timestamp)
+
+### safety_sessions table
+- id (uuid, primary key)
+- user_id (uuid, foreign key to users)
+- destination (text)
+- start_time (timestamp)
+- end_time (timestamp)
+- status (text: 'active', 'completed', 'emergency')
+- last_check_in (timestamp)
+
+### chat_logs table
+- id (uuid, primary key)
+- session_id (uuid, foreign key to safety_sessions)
+- message (text)
+- sender (text: 'user', 'ai')
+- timestamp (timestamp)
+
+### alerts table
+- id (uuid, primary key)
+- session_id (uuid, foreign key to safety_sessions)
+- alert_type (text: 'check_in_missed', 'low_security', 'emergency')
+- message (text)
+- sent_to_contacts (boolean)
+- created_at (timestamp)
+
+---
+
+## API Endpoints to Implement
+
+### Authentication
+- POST /api/auth/signup
+- POST /api/auth/login
+- POST /api/auth/logout
+- POST /api/auth/reset-password
+
+### User Management
+- GET /api/user/profile
+- PUT /api/user/profile
+- GET /api/user/emergency-contacts
+- POST /api/user/emergency-contacts
+- PUT /api/user/emergency-contacts/:id
+- DELETE /api/user/emergency-contacts/:id
+
+### Safety Features
+- POST /api/safety/start-session
+- POST /api/safety/end-session
+- POST /api/safety/check-in
+- GET /api/safety/current-session
+- POST /api/safety/sos
+
+### AI Chat
+- POST /api/chat/message
+- GET /api/chat/history/:sessionId
+
+### Location & Maps
+- GET /api/location/current
+- POST /api/location/update
+- GET /api/location/safe-routes
+- GET /api/location/nearby-safe-spots
+
+---
+
+## UI/UX Requirements
+
+### Design System
+- Primary Color: #1E40AF (Blue)
+- Secondary Color: #DC2626 (Red for emergency)
+- Success Color: #059669 (Green)
+- Warning Color: #D97706 (Orange)
+- Background: #F8FAFC (Light Gray)
+- Text: #1F2937 (Dark Gray)
+
+### Typography
+- Headings: Inter, sans-serif
+- Body: Inter, sans-serif
+- Code: JetBrains Mono, monospace
+
+### Components Needed
+- Button (Primary, Secondary, Danger)
+- Input (Text, Email, Password, Phone)
+- Card (Feature cards, Profile cards)
+- Modal (Emergency contacts, Settings)
+- Alert (Success, Warning, Error)
+- Navigation (Top nav, Side nav)
+- Map (Interactive with markers)
+- Chat (Message bubbles, Input field)
+
+### Responsive Design
+- Mobile-first approach
+- Breakpoints: 320px, 768px, 1024px, 1280px
+- Touch-friendly buttons (min 44px)
+- Accessible color contrast ratios
+
+---
+
+## Security Considerations
+
+### Data Protection
+- All location data encrypted at rest
+- Session data auto-expires after 24 hours
+- User consent required for all tracking
+- GDPR compliance for data deletion
+
+### Authentication Security
+- Password minimum 8 characters
+- Rate limiting on login attempts
+- Session tokens with expiration
+- Optional 2FA implementation
+
+### Location Privacy
+- Location data not stored permanently
+- User can disable tracking anytime
+- Emergency contacts only notified with consent
+- Anonymous reporting option available
+
+---
+
+## Testing Requirements
+
+### Unit Tests
+- Authentication functions
+- Location calculation utilities
+- Safety prediction algorithms
+- Chat message processing
+
+### Integration Tests
+- Supabase connection
+- Map rendering
+- Real-time updates
+- Emergency alert system
+
+### User Acceptance Tests
+- Complete user journey from signup to emergency
+- Mobile responsiveness
+- Accessibility compliance
+- Performance under load
+
+---
+
+## Performance Requirements
+
+### Loading Times
+- Initial page load: < 3 seconds
+- Map rendering: < 2 seconds
+- Chat response: < 1 second
+- Location updates: < 500ms
+
+### Optimization
+- Image optimization and lazy loading
+- Code splitting for routes
+- Caching for static assets
+- Database query optimization
+
+---
+
+## Monitoring & Analytics
+
+### Key Metrics
+- User registration and retention
+- Session completion rates
+- Emergency alert response times
+- System uptime and performance
+
+### Error Tracking
+- Client-side error logging
+- Server-side error monitoring
+- Database performance metrics
+- Real-time alert system health
+
+---
+
+End of Project Brief
+
+✅ What to Do Next
+
+1. Open Cursor
+2. Create a new folder/project
+3. Create a new file named SafeAI_Project_Brief.txt
+4. Paste all the above text
+5. In the Cursor chat, say: "Build this project based on the SafeAI_Project_Brief.txt file"
+
+Cursor's AI will read your entire spec and start generating:
+- The Next.js app
+- Auth setup
+- Map components
+- Dashboard & login pages
+- Integration code for Supabase

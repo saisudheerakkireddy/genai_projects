@@ -1,0 +1,67 @@
+{
+  "target": "luad_rna",
+  "structure_summary": {
+    "chains": [
+      "A"
+    ],
+    "total_residues": 46,
+    "motifs_detected": []
+  },
+  "total_pockets_found": 3,
+  "best_biomarker_site": {
+    "Pocket_ID": "1",
+    "Score": 0.043,
+    "Druggability_Score": 0.0,
+    "Number_of_Alpha_Spheres": 98.0,
+    "Total_SASA": 349.937,
+    "Polar_SASA": 281.102,
+    "Apolar_SASA": 68.835,
+    "Volume": 1620.036,
+    "Mean_local_hydrophobic_density": 3.0,
+    "Mean_alpha_sphere_radius": 4.284,
+    "Mean_alp._sph._solvent_access": 0.557,
+    "Apolar_alpha_sphere_proportion": 0.041,
+    "Hydrophobicity_score": 4.083,
+    "Volume_score": 3.333,
+    "Polarity_score": 8.0,
+    "Charge_score": 0.0,
+    "Proportion_of_polar_atoms": 67.105,
+    "Alpha_sphere_density": 7.494,
+    "Cent._of_mass___Alpha_Sphere_max_dist": 19.006,
+    "Flexibility": 0.0
+  },
+  "biomarkers": [
+    {
+      "predicted_region": "A12-A20",
+      "motif_type": "stem-loop",
+      "function": "Potential ligand-binding site",
+      "associated_disease": "Lung carcinoma (hypothetical)",
+      "recommended_drug_targets": [
+        "Mg2+ pocket stabilizers",
+        "RNA-ligand intercalating agents"
+      ],
+      "pocket_id": "1"
+    },
+    {
+      "predicted_region": "A25-A30",
+      "motif_type": "hairpin loop",
+      "function": "Metal-binding site",
+      "associated_disease": "Renal carcinoma (hypothetical)",
+      "recommended_drug_targets": [
+        "Metal ion chelators",
+        "RNA folding stabilizers"
+      ],
+      "pocket_id": "2"
+    },
+    {
+      "predicted_region": "A33-A38",
+      "motif_type": "tetraloop",
+      "function": "Ligand recognition",
+      "associated_disease": "Lung carcinoma (hypothetical)",
+      "recommended_drug_targets": [
+        "RNA-ligand intercalating agents"
+      ],
+      "pocket_id": "3"
+    }
+  ]
+}

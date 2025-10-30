@@ -1,0 +1,31 @@
+id,keyword,location,text,target,severity,timestamp,source
+live_sim_0_1761250624,fire,Hyderabad,Just in: fire outbreak affecting Hyderabad shopping Hitech City. thick smoke visible for miles. #BreakingNews,1,HIGH,2025-10-24T01:47:04.478303,simulated_live
+live_sim_1_1761279424,storm,Hyderabad,🚨 Hyderabad wind damage update: visibility severely reduced. Stay safe! #DisasterResponse,1,HIGH,2025-10-24T09:47:04.478326,simulated_live
+live_sim_2_1761254224,flood,Hyderabad,Just in: water inundation affecting Hyderabad residential Begumpet. homes evacuated. #BreakingNews,1,HIGH,2025-10-24T02:47:04.478338,simulated_live
+live_sim_3_1761405424,earthquake,Hyderabad,BREAKING: earth tremors reported in southern Secunderabad area of Hyderabad! some structures affected. #DisasterAlert,1,HIGH,2025-10-25T20:47:04.478347,simulated_live
+live_sim_4_1761286624,earthquake,Hyderabad,Confirmed reports of quake in Hyderabad. some structures affected. Emergency response underway.,1,HIGH,2025-10-24T11:47:04.478356,simulated_live
+live_sim_5_1761369424,landslide,Hyderabad,BREAKING: land subsidence reported in rural Kukatpally area of Hyderabad! traffic diverted. #DisasterAlert,1,HIGH,2025-10-25T10:47:04.478364,simulated_live
+live_sim_6_1761207424,flood,Hyderabad,overflowing drains in Hyderabad market Kukatpally - public transport suspended. Please follow evacuation orders if in affected area.,1,CRITICAL,2025-10-23T13:47:04.478372,simulated_live
+live_sim_7_1761304624,earthquake,Hyderabad,Hyderabad residents report seismic activity in entire Jubilee Hills. buildings shaking. Emergency services on scene.,1,HIGH,2025-10-24T16:47:04.478381,simulated_live
+live_sim_8_1761261424,storm,Hyderabad,heavy rainfall in Hyderabad northern Hitech City - public events canceled. Please avoid travel if possible if in affected area.,1,MEDIUM,2025-10-24T04:47:04.478389,simulated_live
+live_sim_9_1761416224,flood,Hyderabad,🚨 Hyderabad overflowing drains update: rescue operations underway. Stay safe! #DisasterResponse,1,CRITICAL,2025-10-25T23:47:04.478397,simulated_live
+live_sim_10_1761254224,fire,Hyderabad,URGENT: fire situation in Hyderabad! firefighters on scene. Authorities responding. #Emergency,1,HIGH,2025-10-24T02:47:04.478406,simulated_live
+live_sim_11_1761254224,earthquake,Hyderabad,Alert: quake in Hyderabad western Madhapur. minor damage reported. Follow official channels for updates.,1,MEDIUM,2025-10-24T02:47:04.478414,simulated_live
+live_sim_12_1761308224,storm,Hyderabad,Confirmed reports of storm in Hyderabad. flights delayed. Emergency response underway.,1,HIGH,2025-10-24T17:47:04.478423,simulated_live
+live_sim_13_1761369424,landslide,Hyderabad,Hyderabad residents report road collapse in construction Secunderabad. road blocked. Emergency services on scene.,1,MEDIUM,2025-10-25T10:47:04.478431,simulated_live
+live_sim_14_1761254224,fire,Hyderabad,Alert: industrial fire in Hyderabad shopping Begumpet. nearby buildings evacuated. Follow official channels for updates.,1,HIGH,2025-10-24T02:47:04.478439,simulated_live
+live_sim_15_1761441424,storm,Hyderabad,🚨 Hyderabad heavy rainfall update: roofs damaged. Stay safe! #DisasterResponse,1,HIGH,2025-10-26T06:47:04.478447,simulated_live
+live_sim_16_1761239824,storm,Hyderabad,Hyderabad residents report wind damage in southern Begumpet. power lines down. Emergency services on scene.,1,LOW,2025-10-23T22:47:04.478455,simulated_live
+live_sim_17_1761337024,landslide,Hyderabad,🚨 Hyderabad hillside collapse update: traffic diverted. Stay safe! #DisasterResponse,1,HIGH,2025-10-25T01:47:04.478463,simulated_live
+live_sim_18_1761394624,fire,Hyderabad,LIVE: major blaze situation developing in Hyderabad. casualties reported. Updates to follow.,1,CRITICAL,2025-10-25T17:47:04.478471,simulated_live
+live_sim_19_1761232624,earthquake,Hyderabad,Confirmed reports of earth tremors in Hyderabad. aftershocks expected. Emergency response underway.,1,MEDIUM,2025-10-23T20:47:04.478479,simulated_live
+live_sim_20_1761268624,earthquake,Hyderabad,LIVE: earth tremors situation developing in Hyderabad. communication networks congested. Updates to follow.,1,MEDIUM,2025-10-24T06:47:04.478487,simulated_live
+live_sim_21_1761362224,fire,Hyderabad,Alert: fire outbreak in Hyderabad commercial Madhapur. firefighters on scene. Follow official channels for updates.,1,HIGH,2025-10-25T08:47:04.478496,simulated_live
+live_sim_22_1761362224,fire,Hyderabad,BREAKING: building fire reported in historic Madhapur area of Hyderabad! air quality deteriorating. #DisasterAlert,1,HIGH,2025-10-25T08:47:04.478504,simulated_live
+live_sim_23_1761326224,flood,Hyderabad,URGENT: severe waterlogging situation in Hyderabad! schools closed. Authorities responding. #Emergency,1,CRITICAL,2025-10-24T22:47:04.478512,simulated_live
+live_sim_24_1761337024,storm,Hyderabad,Hyderabad residents report storm in southern Banjara Hills. trees uprooted. Emergency services on scene.,1,MEDIUM,2025-10-25T01:47:04.478520,simulated_live
+live_sim_25_1761430624,earthquake,Hyderabad,BREAKING: earth tremors reported in eastern Secunderabad area of Hyderabad! power outages in parts. #DisasterAlert,1,HIGH,2025-10-26T03:47:04.478528,simulated_live
+live_sim_26_1761401824,flood,Hyderabad,LIVE: severe waterlogging situation developing in Hyderabad. vehicles stranded. Updates to follow.,1,CRITICAL,2025-10-25T19:47:04.478536,simulated_live
+live_sim_27_1761369424,fire,Hyderabad,major blaze in Hyderabad shopping Gachibowli - thick smoke visible for miles. Please follow official instructions if in affected area.,1,CRITICAL,2025-10-25T10:47:04.478544,simulated_live
+live_sim_28_1761304624,landslide,Hyderabad,🚨 Hyderabad road collapse update: road blocked. Stay safe! #DisasterResponse,1,MEDIUM,2025-10-24T16:47:04.478552,simulated_live
+live_sim_29_1761373024,storm,Hyderabad,Hyderabad residents report cyclonic conditions in central Hitech City. roofs damaged. Emergency services on scene.,1,MEDIUM,2025-10-25T11:47:04.478560,simulated_live

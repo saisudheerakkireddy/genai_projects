@@ -1,0 +1,27 @@
+{
+  "raw_output": "You are an expert molecular bioinformatician. Analyze the RNA structure and pocket data below. STRUCTURE SUMMARY: {\"chains\": [\"A\"], \"total _ residues\": 46, \"motifs _ detected\": []} POCKET INFO: {\"total _ pockets _ found\": 3, \"best _ biomarker _ site\": {\"Pocket _ ID\": \"1\", \"Score\": 0.043, \"Druggability _ Score\": 0.0, \"Number _ of _ Alpha _ Spheres\": 98.0, \"Total _ SASA\": 349.937, \"Polar _ SASA\": 281.102, \"Apolar _ SASA\": 68.835, \"Volume\": 1620.036, \"Mean _ local _ hydrophobic _ density\": 3.0, \"Mean _ alpha _ sphere _ radius\": 4.284, \"Mean _ alp. _ sph. _ solvent _ access\": 0.557, \"Apolar _ alpha _ sphere _ proportion\": 0.041, \"Hydrophobicity _ score\": 4.083, \"Volume _ score\": 3.333, \"Polarity _ score\": 8.0, \"Charge _ score\": 0.0, \"Proportion _ of _ polar _ atoms\": 67.105, \"Alpha _ sphere _ density\": 7.494, \"Cent. _ of _ mass _ _ _ Alpha _ Sphere _ max _ dist\": 19.006, \"Flexibility\": 0.0}} Based on the structural motifs and the detected pockets, identify potential RNA biomarkers and drug targets. Respond ONLY in JSON following this schema example: {\"structure _ summary\": {\"chains\": [\"A\"], \"total _ residues\": 46, \"motifs _ detected\": []}, \"biomarkers\": [{\"id\": \"A45\\ u2013A52\", \"type\": \"tetraloop motif\", \"function\": \"Potential ligand-binding site\", \"associated _ disease\": \"Lung carcinoma (hypothetical)\"}], \"recommended _ drug _ targets\": [\"Mg\\ u00b2\\ u207a pocket stabilizers\", \"RNA\\ u2013ligand intercalating agents\"]}.",
+  "target": "luad_rna",
+  "total_pockets_found": 3,
+  "best_biomarker_site": {
+    "Pocket_ID": "1",
+    "Score": 0.043,
+    "Druggability_Score": 0.0,
+    "Number_of_Alpha_Spheres": 98.0,
+    "Total_SASA": 349.937,
+    "Polar_SASA": 281.102,
+    "Apolar_SASA": 68.835,
+    "Volume": 1620.036,
+    "Mean_local_hydrophobic_density": 3.0,
+    "Mean_alpha_sphere_radius": 4.284,
+    "Mean_alp._sph._solvent_access": 0.557,
+    "Apolar_alpha_sphere_proportion": 0.041,
+    "Hydrophobicity_score": 4.083,
+    "Volume_score": 3.333,
+    "Polarity_score": 8.0,
+    "Charge_score": 0.0,
+    "Proportion_of_polar_atoms": 67.105,
+    "Alpha_sphere_density": 7.494,
+    "Cent._of_mass___Alpha_Sphere_max_dist": 19.006,
+    "Flexibility": 0.0
+  }
+}

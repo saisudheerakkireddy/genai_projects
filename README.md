@@ -6,10 +6,10 @@ This repository contains a fully automated evaluation framework for the GenAI Ha
 
 Before you begin, ensure you have the following installed on your macOS device:
 
-- **Homebrew**: [Installation Guide](https://brew.sh/)
+- **Homebrew**: [
 - **Python 3.8+**: `brew install python`
 - **Git**: `brew install git`
-- **Docker**: [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)
+- **Docker**: 
 - **Gitleaks**: `brew install gitleaks`
 - **Bandit**: `brew install bandit`
 
@@ -17,7 +17,7 @@ Before you begin, ensure you have the following installed on your macOS device:
 
 1.  **Clone the Repository**
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/saisudheerakkireddy/genai_projects.git
     cd genai_hackathon_25
     ```
 
